@@ -1,12 +1,12 @@
 import json
 import random
+from flask import jsonify
 
 
 class Vocabulary:
     """
     Handle loading in a JSON file with proper unfinished swears in it!
     """
-
     def read_json(path, mode='r'):
         """Loads a json file"""
         path = "resources/data.json"
@@ -34,8 +34,8 @@ class EpithetGenerator:
 
     def epithet_vocab(self):
         """Returns epithet vocabulary"""
-        # result = str(data.keys())
-        result = str(data['Column 1'] + data['Column 2'] + data['Column 3'])
+        result = '{} {} {}'.format(
+            data['Column 1'], data['Column 2'], data['Column 3'])
         return result
 
 
