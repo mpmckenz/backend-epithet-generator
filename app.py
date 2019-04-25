@@ -1,6 +1,5 @@
 from flask import Flask, jsonify
 from .helpers import EpithetGenerator
-import random
 
 app = Flask(__name__)
 
@@ -17,10 +16,6 @@ def vocabulary():
     return jsonify(vocabulary['vocabulary'])
 
 
-@app.route('/multiple_epithets')
-def multiple_epithets():
-    multiplier = random.randint(1, 21)
-    epi_container = []
-    for number in range(multiplier):
-        epi_container.append(EpithetGenerator().epithet_generator())
-    return str(epi_container)
+@app.route('/epithets/<qty>')
+def multiple_epithets(qty):
+    return str(EpithetGenerator().generate_epithet_quantity(qty))

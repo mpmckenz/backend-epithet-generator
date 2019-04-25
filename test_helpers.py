@@ -1,11 +1,8 @@
 import os
 import pytest
 from .helpers import Vocabulary, EpithetGenerator
-from flask import Flask
 import requests
-
-
-app = Flask(__name__)
+# import app from app
 
 
 def test_http():
@@ -13,7 +10,7 @@ def test_http():
     response_random = requests.get('http://127.0.0.1:5000/')
     response_vocab = requests.get('http://127.0.0.1:5000/vocabulary')
     response_multiple_epi = requests.get(
-        'http://127.0.0.1:5000/multiple_epithets')
+        'http://127.0.0.1:5000/epithets/3')
     assert response_random.status_code == 200
     assert response_vocab.status_code == 200
     assert response_multiple_epi.status_code == 200
@@ -35,3 +32,12 @@ def test_fail_epithet():
 
 def test_epithet():
     assert "ill-breeding" in EpithetGenerator().epithet_vocab()
+
+
+def test_epi_qty():
+    assert len(EpithetGenerator().generate_epithet_quantity(3)
+               ) == 3
+
+
+def test_fail_api_qty():
+    assert isinstance(EpithetGenerator().generate_epithet_quantity(10), list)
