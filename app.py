@@ -1,5 +1,4 @@
 from flask import Flask
-# from dotenv import load_dotenv
 from .helpers import EpithetGenerator
 
 
@@ -18,7 +17,4 @@ def vocabulary():
 
 @app.route('/epithets/<qty>')
 def multiple_epithets(qty):
-    epi_container = []
-    for number in range(int(qty)):
-        epi_container.append(EpithetGenerator().epithet_generator())
-    return str(epi_container)
+    return str(EpithetGenerator().generate_epithet_quantity(qty))

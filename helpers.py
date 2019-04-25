@@ -34,9 +34,14 @@ class EpithetGenerator:
 
     def epithet_vocab(self):
         """Returns epithet vocabulary"""
-        # result = str(data.keys())
         result = str(data['Column 1'] + data['Column 2'] + data['Column 3'])
         return result
+
+    def generate_epithet_quantity(self, qty):
+        epi_container = []
+        for number in range(int(qty)):
+            epi_container.append(EpithetGenerator().epithet_generator())
+        return epi_container
 
 
 data = EpithetGenerator().epithet_read()

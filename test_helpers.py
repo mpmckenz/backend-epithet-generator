@@ -20,3 +20,12 @@ def test_fail_epithet():
 
 def test_epithet():
     assert "ill-breeding" in EpithetGenerator().epithet_vocab()
+
+
+def test_epi_qty():
+    assert len(EpithetGenerator().generate_epithet_quantity(3)
+               ) == 3
+
+
+def test_fail_api_qty():
+    assert isinstance(EpithetGenerator().generate_epithet_quantity(10), list)
